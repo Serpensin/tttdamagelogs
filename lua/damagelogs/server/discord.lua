@@ -49,7 +49,7 @@ function Damagelog:DiscordMessage(discordUpdate)
         return
     end
 
-    local steamconnectUrl = CreateConVar("ttt_dmglogs_steamconnect_url", "https://steamconnect.serpensin.com/?ip=%ip%&port=%port%", FCVAR_PROTECTED + FCVAR_LUA_SERVER, "TTTDamagelogs - Steam connect URL template. Use %ip% and %port% as placeholders.")
+    local steamconnectUrl = CreateConVar("ttt_dmglogs_steamconnect_url", "", FCVAR_PROTECTED + FCVAR_LUA_SERVER, "TTTDamagelogs - Steam connect URL template. Use %ip% and %port% as placeholders.")
 
     local serverField = nil
     local baseUrl = steamconnectUrl:GetString()

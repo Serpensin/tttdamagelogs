@@ -6,6 +6,7 @@ local POST_MODES = {
 
 local HTTP = HTTP
 local url = CreateConVar("ttt_dmglogs_discordurl", "", FCVAR_PROTECTED + FCVAR_LUA_SERVER, "TTTDamagelogs - Discord Webhook URL")
+local steamconnectUrl = CreateConVar("ttt_dmglogs_steamconnect_url", "", FCVAR_PROTECTED + FCVAR_LUA_SERVER, "TTTDamagelogs - Steam connect URL template. Use %ip% and %port% as placeholders.")
 local disabled = Damagelog.DiscordWebhookMode == POST_MODES.DISABLED
 local emitOnlyWhenAdminsOffline = Damagelog.DiscordWebhookMode == POST_MODES.WHEN_ADMINS_OFFLINE
 local limit = 5
@@ -48,8 +49,6 @@ function Damagelog:DiscordMessage(discordUpdate)
     if disabled or (emitOnlyWhenAdminsOffline and discordUpdate.adminOnline) then
         return
     end
-
-    local steamconnectUrl = CreateConVar("ttt_dmglogs_steamconnect_url", "", FCVAR_PROTECTED + FCVAR_LUA_SERVER, "TTTDamagelogs - Steam connect URL template. Use %ip% and %port% as placeholders.")
 
     local serverField = nil
     local baseUrl = steamconnectUrl:GetString()
